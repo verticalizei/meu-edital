@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Direito Constitucional Brasileiro</title>
+    <style>
+        /* Variáveis CSS para o Tema */
+        :root {
+            /* Modo Claro */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --header-color: #2c3e50;
+            --main-header-color: #0056b3;
+            --highlight-bg: #ecf0f1;
+            --highlight-border: #3498db;
+            --tab-button-bg: #f0f0f0;
+            --tab-button-border: #ddd;
+            --tab-button-hover-bg: #e9e9e9;
+            --tab-button-active-bg: #0056b3;
+            --tab-button-active-color: #fff;
+            --tab-content-border: #ddd;
+            --strong-color: #e74c3c;
+            --container-bg: #fff;
+            --container-shadow: rgba(0, 0, 0, 0.1);
+            --scroll-button-bg: #0056b3;
+            --scroll-button-color: #fff;
+            --scroll-button-hover-bg: #004085;
+        }
+
+        [data-theme="dark"] {
+            /* Modo Escuro Aprimorado */
+            --bg-color: #1a1a2e; /* Fundo bem escuro */
+            --text-color: #e0e0e0; /* Texto claro para contraste */
+            --header-color: #e0e0e0; /* Títulos claros */
+            --main-header-color: #6a99ed; /* Azul mais vibrante para o título principal no escuro */
+            --highlight-bg: #2a2a4a; /* Fundo do destaque mais escuro */
+            --highlight-border: #4a77e0; /* Borda do destaque azul mais forte */
+            --tab-button-bg: #2a2a4a; /* Fundo das abas inativas mais escuro */
+            --tab-button-border: #3a3a5a; /* Borda das abas inativas */
+            --tab-button-hover-bg: #3a3a5a; /* Hover das abas inativas */
+            --tab-button-active-bg: #4a77e0; /* Fundo da aba ativa (azul forte) */
+            --tab-button-active-color: #fff; /* Texto da aba ativa branco */
+            --tab-content-border: #3a3a5a; /* Borda do conteúdo da aba */
+            --strong-color: #ff6b6b; /* Vermelho de destaque um pouco mais vibrante para o escuro */
+            --container-bg: #22223b; /* Fundo do container principal mais escuro */
+            --container-shadow: rgba(0, 0, 0, 0.4); /* Sombra mais pronunciada */
+            --scroll-button-bg: #4a77e0; /* Botões de scroll/tema azul forte */
+            --scroll-button-color: #fff;
+            --scroll-button-hover-bg: #3a66d0;
+        }
+
+        /* Estilos Gerais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--container-bg);
+            box-shadow: 0 4px 8px var(--container-shadow);
+            border-radius: 8px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        h1, h2, h3, h4 {
+            color: var(--header-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        h1 {
+            text-align: center;
+            color: var(--main-header-color);
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--tab-button-border);
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.4em;
+            color: var(--header-color);
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        strong {
+            color: var(--strong-color); /* Cor para destacar termos importantes */
+        }
+        .highlight {
+            background-color: var(--highlight-bg);
+            padding: 10px;
+            border-left: 5px solid var(--highlight-border);
+            margin-bottom: 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Estilos das Abas */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--tab-button-border);
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            background-color: var(--tab-button-bg);
+            border: 1px solid var(--tab-button-border);
+            border-bottom: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            margin-right: 5px;
+            white-space: nowrap;
+            color: var(--text-color); /* Garante que o texto da aba mude de cor */
+        }
+        .tab-button:hover {
+            background-color: var(--tab-button-hover-bg);
+        }
+        .tab-button.active {
+            background-color: var(--tab-button-active-bg);
+            color: var(--tab-button-active-color);
+            border-color: var(--tab-button-active-bg);
+            position: relative;
+            bottom: -2px;
+            z-index: 1;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid var(--tab-content-border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            background-color: var(--container-bg);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Botão de Tema */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--scroll-button-bg);
+            color: var(--scroll-button-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .theme-toggle:hover {
+            background-color: var(--scroll-button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        /* Botão de Voltar ao Topo */
+        #scrollToTopBtn {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--scroll-button-bg);
+            color: var(--scroll-button-color);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        #scrollToTopBtn:hover {
+            background-color: var(--scroll-button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-button {
+                flex-grow: 1;
+                text-align: center;
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            .theme-toggle, #scrollToTopBtn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3em;
+            }
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            #scrollToTopBtn {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab-button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botão de Tema (Modo Claro/Escuro) -->
+    <button class="theme-toggle" id="themeToggle">
+        ☀️
+    </button>
+
+    <div class="container">
+        <h1>INTRODUÇÃO AO DIREITO CONSTITUCIONAL BRASILEIRO</h1>
+        <p class="highlight">
+            Este material visa ser um guia aprofundado e completo sobre os temas essenciais do Direito Constitucional brasileiro,
+            organizado para facilitar o aprendizado e a consulta, com destaque para conceitos-chave, classificações e entendimentos jurisprudenciais relevantes.
+        </p>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'teoria')">MÓDULO 1: TEORIA DA CONSTITUIÇÃO</button>
+            <button class="tab-button" onclick="openTab(event, 'principios')">MÓDULO 2: PRINCÍPIOS FUNDAMENTAIS</button>
+            <button class="tab-button" onclick="openTab(event, 'direitos')">MÓDULO 3: DIREITOS E GARANTIAS FUNDAMENTAIS</button>
+            <button class="tab-button" onclick="openTab(event, 'administracao')">MÓDULO 4: ADMINISTRAÇÃO PÚBLICA</button>
+            <button class="tab-button" onclick="openTab(event, 'nacionalidade')">MÓDULO 5: NACIONALIDADE</button>
+            <button class="tab-button" onclick="openTab(event, 'sociais')">MÓDULO 6: DIREITOS SOCIAIS</button>
+            <button class="tab-button" onclick="openTab(event, 'politicos')">MÓDULO 7: DIREITOS POLÍTICOS</button>
+            <button class="tab-button" onclick="openTab(event, 'partidos')">MÓDULO 8: PARTIDOS POLÍTICOS</button>
+        </div>
+
+        <div id="teoria" class="tab-content active">
+            <h2>MÓDULO 1: TEORIA DA CONSTITUIÇÃO</h2>
+            <p>A Constituição é definida como a <strong>lei maior</strong> ou a <strong>norma de ordem superior</strong> que, usualmente, versa sobre a organização do Estado, bem como as garantias, direitos e deveres individuais do cidadão, entre outros assuntos considerados de maior relevância pelo contexto da sociedade em que é elaborada. Ela é o documento fundamental que traz a organização do Estado.</p>
+            <p>Para conceituar algo como "Constituição", é crucial ter em mente os diversos sentidos ou concepções doutrinárias sobre o tema.</p>
+        </div>
+
+        <div id="principios" class="tab-content">
+            <h2>MÓDULO 2: PRINCÍPIOS FUNDAMENTAIS (ART. 1º AO 4º DA CF)</h2>
+            <p>Este módulo explora os alicerces da República Federativa do Brasil, conforme disposto nos artigos 1º a 4º da Constituição Federal.</p>
+
+            <h3>1. Fundamentos da República Federativa do Brasil (Art. 1º da CF)</h3>
+            <p>A República Federativa do Brasil constitui-se em Estado Democrático de Direito. Os fundamentos essenciais da República Federativa do Brasil são:</p>
+            <ul>
+                <li><strong>Soberania:</strong> Poder político supremo e independente.</li>
+                <li><strong>Cidadania:</strong> "Status" das pessoas físicas no pleno gozo de seus direitos políticos.</li>
+                <li><strong>Dignidade da Pessoa Humana:</strong> Fundamento da República, não um objetivo.</li>
+                <li><strong>Valores Sociais do Trabalho e da Livre Iniciativa.</strong></li>
+                <li><strong>Pluralismo Político:</strong> Assegura aos cidadãos, inclusive, o apartidarismo.</li>
+            </ul>
+
+            <h3>2. Forma de Estado e de Governo</h3>
+            <ul>
+                <li><strong>Forma de Estado:</strong> O Brasil adota a forma <strong>federativa de Estado</strong> (união indissolúvel). Não há direito de secessão.</li>
+                <li><strong>Forma de Governo/Regime Político:</strong> O Brasil adotou a forma <strong>republicana de governo</strong> e o <strong>regime democrático</strong>. A soberania popular é exercida pelo sufrágio universal e pelo voto direto e secreto. Adota a democracia semidireta (plebiscitos, referendos, iniciativa popular).</li>
+            </ul>
+
+            <h3>3. Separação de Poderes</h3>
+            <p>O Brasil adota o sistema <strong>presidencialista</strong>, caracterizado pela independência e harmonia entre os Poderes (Legislativo, Executivo e Judiciário).</p>
+            <h4>Funções Típicas:</h4>
+            <ul>
+                <li><strong>Poder Legislativo:</strong> Elaboração de normas e fiscalização.</li>
+                <li><strong>Poder Executivo:</strong> Administrar os interesses públicos, aplicando a lei.</li>
+                <li><strong>Poder Judiciário:</strong> Julgar.</li>
+            </ul>
+            <p><strong>Funções Atípicas:</strong> Um Poder pode exercer, de forma atípica, funções de outro (ex: Legislativo administrando, Executivo julgando processos administrativos).</p>
+
+            <h3>4. Objetivos da República Federativa do Brasil (Art. 3º da CF)</h3>
+            <p>São os fins do Estado brasileiro, as metas que ele se obriga a cumprir:</p>
+            <ul>
+                <li>Construir uma sociedade livre, justa e solidária.</li>
+                <li>Garantir o desenvolvimento nacional.</li>
+                <li>Erradicar a pobreza e a marginalização e reduzir as desigualdades sociais e regionais.</li>
+                <li>Promover o bem de todos, sem preconceitos.</li>
+            </ul>
+
+            <h3>5. Princípios que Regem as Relações Internacionais do Brasil (Art. 4º da CF)</h3>
+            <p>O Brasil rege-se nas suas relações internacionais pelos seguintes princípios:</p>
+            <ul>
+                <li>Independência nacional.</li>
+                <li>Prevalência dos direitos humanos.</li>
+                <li>Autodeterminação dos povos.</li>
+                <li>Não-intervenção.</li>
+                <li>Igualdade entre os Estados.</li>
+                <li>Defesa da paz.</li>
+                <li>Solução pacífica dos conflitos.</li>
+                <li>Repúdio ao terrorismo e ao racismo.</li>
+                <li>Cooperação entre os povos para o progresso da humanidade.</li>
+                <li>Concessão de asilo político.</li>
+            </ul>
+            <p class="highlight">O parágrafo único do Art. 4º estabelece que o Brasil buscará a integração econômica, política, social e cultural dos povos da América Latina.</p>
+        </div>
+
+        <div id="direitos" class="tab-content">
+            <h2>MÓDULO 3: DIREITOS E GARANTIAS FUNDAMENTAIS (ART. 5º DA CF)</h2>
+            <p>Este módulo aprofunda nos direitos e deveres individuais e coletivos, um dos pilares da Constituição.</p>
+
+            <h3>1. Aspectos Gerais dos Direitos e Garantias Fundamentais</h3>
+            <ul>
+                <li>O <strong>direito à vida</strong> é o direito fundamental mais importante, mas não é absoluto.</li>
+                <li>O rol de direitos e garantias fundamentais no Art. 5º da CF é <strong>exemplificativo</strong>, não taxativo.</li>
+                <li>As normas definidoras dos direitos e garantias fundamentais têm <strong>aplicação imediata</strong>.</li>
+                <li>São titulares: brasileiros e estrangeiros em território nacional (mesmo não residentes).</li>
+            </ul>
+
+            <h3>2. Princípio da Isonomia (Art. 5º, I)</h3>
+            <ul>
+                <li>Homens e mulheres são iguais em direitos e obrigações.</li>
+                <li>A igualdade não é meramente formal; permite tratamento diferenciado justificado (ex: ações afirmativas).</li>
+            </ul>
+
+            <h3>3. Princípio da Legalidade (Art. 5º, II e Art. 37 da CF)</h3>
+            <ul>
+                <li><strong>Legalidade Privada (Art. 5º):</strong> O particular pode fazer tudo o que a lei não proíbe.</li>
+                <li><strong>Legalidade Pública (Art. 37):</strong> O setor público pode fazer apenas aquilo que a lei autoriza.</li>
+                <li><strong>Legalidade x Reserva Legal:</strong> São diferentes. Reserva legal se refere a matérias tratadas apenas por lei em sentido estrito.</li>
+            </ul>
+
+            <h3>4. Livre Manifestação do Pensamento e Vedação do Anonimato (Art. 5º, IV)</h3>
+            <ul>
+                <li>É livre a manifestação do pensamento, mas <strong>vedado o anonimato</strong>.</li>
+                <li>Denúncias anônimas podem servir de base para investigação, mas não como causa única para punição.</li>
+                <li>A liberdade de expressão abrange atividade intelectual, artística, científica e de comunicação, sem censura prévia.</li>
+                <li>O "direito ao esquecimento" é incompatível com a CF para fatos verídicos licitamente obtidos.</li>
+            </ul>
+
+            <h3>5. Inviolabilidade de Domicílio (Art. 5º, XI)</h3>
+            <ul>
+                <li>O domicílio é inviolável.</li>
+                <li><strong>Exceções:</strong> flagrante delito, desastre, prestar socorro, ou, durante o dia, por determinação judicial.</li>
+                <li>O conceito de "casa" é amplo.</li>
+            </ul>
+
+            <h3>6. Sigilo de Correspondência e de Comunicação (Art. 5º, XII)</h3>
+            <ul>
+                <li>É inviolável o sigilo da correspondência, comunicações telegráficas e de dados.</li>
+                <li><strong>Comunicações telefônicas:</strong> Exceção, podem ser quebradas por ordem judicial para investigação criminal ou instrução penal.</li>
+                <li><strong>Gravação Clandestina:</strong> Gravação feita por um dos interlocutores não é interceptação e pode ser realizada sem autorização judicial.</li>
+                <li><strong>CPIs:</strong> Podem quebrar sigilo fiscal, bancário e de dados, mas não interceptação telefônica (reserva jurisdicional).</li>
+            </ul>
+
+            <h3>7. Liberdade de Profissão (Art. 5º, XIII)</h3>
+            <ul>
+                <li>É livre o exercício de qualquer trabalho, ofício ou profissão, atendidas as qualificações profissionais que a lei estabelecer.</li>
+                <li>Norma de eficácia contida e aplicabilidade imediata.</li>
+                <li>A exigência de diploma para jornalista não foi recepcionada pela CF (decisão do STF).</li>
+            </ul>
+
+            <h3>8. Direito de Reunião (Art. 5º, XVI)</h3>
+            <ul>
+                <li>Direito de manifestação coletiva, pacífica, sem armas, em locais abertos ao público.</li>
+                <li>Não precisam de autorização prévia, mas sim <strong>prévio aviso</strong> à autoridade competente.</li>
+            </ul>
+
+            <h3>9. Direito de Associação (Art. 5º, XVII, XVIII, XIX, XXI)</h3>
+            <ul>
+                <li>Livre a associação para fins lícitos, vedada a de caráter paramilitar.</li>
+                <li>Criação de associações independe de autorização estatal.</li>
+                <li>Dissolução compulsória exige decisão judicial com trânsito em julgado. Suspensão pode ocorrer por decisão judicial sem trânsito em julgado.</li>
+                <li>Entidades associativas representam filiados com autorização expressa (exceto MS coletivo - Súmula 629 STF).</li>
+            </ul>
+
+            <h3>10. Direito à Propriedade e à Herança (Art. 5º, XXII, XXIII, XXIV, XXV, XXX, XXXI)</h3>
+            <ul>
+                <li>Garantido o direito de propriedade, que deve atender à sua <strong>função social</strong>.</li>
+                <li><strong>Desapropriação:</strong> Por necessidade/utilidade pública ou interesse social, mediante justa e prévia indenização em dinheiro.</li>
+                <li><strong>Desapropriação-Confisco (Art. 243 da CF):</strong> Sem indenização para propriedades com culturas ilegais ou trabalho escravo.</li>
+                <li><strong>Requisição Administrativa (Art. 5º, XXV):</strong> Em perigo público, uso de propriedade particular com indenização ulterior se houver dano.</li>
+                <li><strong>Direito de Herança:</strong> Garantido. Sucessão de bens de estrangeiros no Brasil regulada pela lei brasileira em benefício de cônjuge/filhos brasileiros, se mais favorável.</li>
+            </ul>
+
+            <h3>11. Garantias Administrativas (Direito de Petição e de Certidão - Art. 5º, XXXIV)</h3>
+            <ul>
+                <li><strong>Direito de Petição:</strong> Assegurado a todos, gratuito, não se confunde com direito de ação.</li>
+                <li><strong>Direito de Certidão:</strong> Direito de obter certidões de repartições públicas para defesa de direitos, gratuito.</li>
+            </ul>
+
+            <h3>12. Princípio da Inafastabilidade da Jurisdição (Art. 5º, XXXV)</h3>
+            <ul>
+                <li>A lei não excluirá da apreciação do Poder Judiciário lesão ou ameaça a direito.</li>
+                <li>Brasil adota sistema de jurisdição única, com algumas exceções de jurisdição condicionada (ex: habeas data).</li>
+            </ul>
+
+            <h3>13. Direito Adquirido, Ato Jurídico Perfeito e Coisa Julgada (Art. 5º, XXXVI)</h3>
+            <ul>
+                <li>A lei não prejudicará o direito adquirido, o ato jurídico perfeito e a coisa julgada.</li>
+                <li><strong>Importante:</strong> Não há direito adquirido a regime jurídico para o servidor público.</li>
+            </ul>
+
+            <h3>14. Princípio do Juiz Natural e Vedação do Tribunal de Exceção (Art. 5º, XXXVII)</h3>
+            <ul>
+                <li>Ninguém será processado nem sentenciado senão pela autoridade competente. Proíbe tribunais de exceção.</li>
+            </ul>
+
+            <h3>15. Irretroatividade da Lei Penal (Art. 5º, XL)</h3>
+            <ul>
+                <li>A lei penal não retroagirá, <strong>salvo para beneficiar o réu</strong> (retroatividade benigna).</li>
+            </ul>
+
+            <h3>16. Prisão Civil por Dívida (Art. 5º, LXVII)</h3>
+            <ul>
+                <li>Como regra, não haverá prisão civil por dívida.</li>
+                <li><strong>Única exceção atual:</strong> inadimplemento voluntário e inescusável de obrigação alimentícia.</li>
+                <li>Prisão do depositário infiel tornou-se ilícita no Brasil (Pacto de São José da Costa Rica, Súmula Vinculante 25 do STF).</li>
+            </ul>
+
+            <h3>17. Devido Processo Legal, Contraditório e Ampla Defesa, Provas Ilícitas (Art. 5º, LIV, LV, LVI, LXXVIII)</h3>
+            <ul>
+                <li>Assegurados aos litigantes e acusados. Inclui razoável duração do processo.</li>
+                <li><strong>Provas Ilícitas:</strong> Inadmissíveis. Aplica-se a doutrina dos "frutos da árvore envenenada".</li>
+                <li><strong>Presunção de Inocência:</strong> Candidatos com processos criminais sem condenação definitiva podem concorrer a cargos políticos.</li>
+            </ul>
+
+            <h3>18. Remédios Constitucionais</h3>
+            <p>Instrumentos para provocar a atuação das autoridades competentes.</p>
+            <h4>Habeas Corpus (HC - Art. 5º, LXVIII e LXXVII)</h4>
+            <ul>
+                <li><strong>Objeto:</strong> Proteger a liberdade de locomoção.</li>
+                <li><strong>Legitimidade:</strong> Qualquer pessoa pode impetrar, não exige advogado. Paciente deve ser pessoa física.</li>
+                <li><strong>Gratuidade:</strong> Ação gratuita.</li>
+                <li><strong>Exceções:</strong> Não cabe para punições disciplinares militares (salvo legalidade dos pressupostos), decisão que condena apenas a multa, impugnar sequestro/confisco de bens, afastamento de cargo público.</li>
+                <li>Aplica-se o <strong>Princípio da Proibição da Reformatio in Pejus</strong>.</li>
+            </ul>
+            <h4>Habeas Data (HD - Art. 5º, LXXII e LXXVII)</h4>
+            <ul>
+                <li><strong>Objeto:</strong> Assegurar conhecimento ou retificação de informações pessoais em bancos de dados governamentais ou públicos.</li>
+                <li><strong>Requisito Essencial:</strong> Recusa prévia da entidade detentora.</li>
+                <li><strong>Legitimidade Ativa:</strong> Pessoa física ou jurídica.</li>
+                <li><strong>Gratuidade:</strong> Ação gratuita.</li>
+            </ul>
+            <h4>Mandado de Segurança (MS - Art. 5º, LXIX)</h4>
+            <ul>
+                <li><strong>Objeto:</strong> Proteger direito líquido e certo não amparado por HC ou HD, contra ato de autoridade pública ou agente de pessoa jurídica no exercício de atribuições do Poder Público.</li>
+                <li><strong>Direito Líquido e Certo:</strong> Comprovado unicamente por documentos.</li>
+                <li><strong>Prazo Decadencial:</strong> 120 dias para MS repressivo; MS preventivo não tem prazo.</li>
+            </ul>
+            <h4>Mandado de Segurança Coletivo (MSC - Art. 5º, LXX)</h4>
+            <ul>
+                <li><strong>Legitimidade Ativa:</strong> Partido político com representação no Congresso, organização sindical, entidade de classe ou associação (com 1 ano de funcionamento).</li>
+                <li>Independe de autorização expressa dos filiados (Súmula 629 do STF).</li>
+            </ul>
+            <h4>Mandado de Injunção (MI - Art. 5º, LXXI)</h4>
+            <ul>
+                <li><strong>Objeto:</strong> Concedido quando a falta de norma regulamentadora torna inviável o exercício de direitos e liberdades constitucionais.</li>
+                <li>Cabível para omissões absolutas ou parciais.</li>
+                <li>STF adota posição concretista nas decisões de MI.</li>
+            </ul>
+            <h4>Ação Popular (AP - Art. 5º, LXXIII)</h4>
+            <ul>
+                <li><strong>Objeto:</strong> Anular ato lesivo ao patrimônio público, moralidade administrativa, meio ambiente e patrimônio histórico e cultural.</li>
+                <li><strong>Legitimidade Ativa:</strong> Somente o <strong>cidadão</strong> (brasileiro nato ou naturalizado no gozo de direitos políticos).</li>
+                <li>Autor é isento de custas, salvo má-fé.</li>
+            </ul>
+        </div>
+
+        <div id="administracao" class="tab-content">
+            <h2>MÓDULO 4: ADMINISTRAÇÃO PÚBLICA (ART. 37 AO 41 DA CF)</h2>
+            <p>Este módulo aborda as normas constitucionais que regem a Administração Pública, seus princípios e o regime dos servidores.</p>
+
+            <h3>1. Princípios da Administração Pública (Art. 37, caput da CF)</h3>
+            <p>A administração pública obedecerá aos princípios explícitos no acrônimo <strong>LIMPE</strong>:</p>
+            <ul>
+                <li><strong>Legalidade:</strong> A Administração só pode fazer aquilo que a lei autoriza.</li>
+                <li><strong>Impessoalidade:</strong> Tratamento igual a todos, sem promoção pessoal de autoridades.</li>
+                <li><strong>Moralidade:</strong> Refere-se à moral jurídica.</li>
+                <li><strong>Publicidade:</strong> Transparência dos atos, com algumas mitigações.</li>
+                <li><strong>Eficiência:</strong> Busca por resultados, economicidade e melhor atuação do agente público.</li>
+            </ul>
+
+            <h3>2. Acesso a Cargos, Empregos e Funções Públicas (Art. 37, I, II, V, IX da CF)</h3>
+            <ul>
+                <li><strong>Acessibilidade:</strong> Cargos acessíveis a brasileiros e estrangeiros (na forma da lei).</li>
+                <li><strong>Regra do Concurso Público (Art. 37, II):</strong> Exigido para provimento de cargos e empregos públicos.</li>
+                <li><strong>Validade do Concurso:</strong> Pode-se realizar novo concurso na vigência do anterior, mas aprovados anteriores têm prioridade.</li>
+                <li><strong>Exceções:</strong>
+                    <ul>
+                        <li><strong>Cargos em Comissão e Funções de Confiança (Art. 37, V):</strong> Para direção, chefia e assessoramento.</li>
+                        <li><strong>Contratação Temporária (Art. 37, IX):</strong> Para necessidade temporária de excepcional interesse público.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>3. Remuneração dos Agentes Públicos (Art. 37, X, XI, XIII, XIV e Art. 39, §4º da CF)</h3>
+            <ul>
+                <li><strong>Fixação e Alteração:</strong> Somente por Lei Específica.</li>
+                <li><strong>Teto Remuneratório (Art. 37, XI):</strong> Limites estabelecidos para remuneração e subsídio.</li>
+                <li><strong>Vedação de Vinculação ou Equiparação (Art. 37, XIII):</strong> Proibida a vinculação de espécies remuneratórias.</li>
+                <li><strong>Acréscimos Pecuniários (Art. 37, XIV):</strong> Não serão computados nem acumulados para acréscimos ulteriores.</li>
+                <li><strong>Subsídio (Art. 39, §4º):</strong> Remuneração exclusiva em parcela única para membros de Poder, detentores de mandato eletivo, etc.</li>
+                <li><strong>Súmula Vinculante 37 do STF:</strong> Não cabe ao Judiciário aumentar vencimentos de servidores sob fundamento de isonomia.</li>
+            </ul>
+
+            <h3>4. Acumulação de Cargos Públicos (Art. 37, XVI, XVII e Art. 38 da CF)</h3>
+            <ul>
+                <li><strong>Regra Geral:</strong> Vedada a acumulação remunerada de cargos, empregos ou funções públicas.</li>
+                <li><strong>Exceções Constitucionais (Art. 37, XVI):</strong>
+                    <ul>
+                        <li>Dois cargos de professor.</li>
+                        <li>Um cargo de professor com outro técnico ou científico.</li>
+                        <li>Dois cargos ou empregos privativos de profissionais de saúde.</li>
+                    </ul>
+                </li>
+                <li><strong>Acumulação na Inatividade:</strong> O que é acumulável na ativa, vale para a inatividade.</li>
+                <li><strong>Acumulação de Cargo Efetivo com Mandato Eletivo (Art. 38):</strong>
+                    <ul>
+                        <li>Presidente, Governador, Prefeito, Federal/Estadual: Afastamento do cargo efetivo.</li>
+                        <li>Vereador: Permite acumulação com cargo efetivo, desde que haja compatibilidade de horários e respeitado o teto.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>5. Estabilidade do Servidor Público (Art. 41 da CF)</h3>
+            <ul>
+                <li><strong>Aquisição:</strong> Após três anos de efetivo exercício, mediante avaliação de desempenho.</li>
+                <li><strong>Perda do Cargo pelo Servidor Estável:</strong>
+                    <ul>
+                        <li>Sentença judicial transitada em julgado.</li>
+                        <li>Processo administrativo disciplinar (PAD) com ampla defesa.</li>
+                        <li>Avaliação periódica de desempenho (lei complementar).</li>
+                        <li>Cumprimento do limite de gastos com pessoal (Art. 169 da CF).</li>
+                    </ul>
+                </li>
+                <li><strong>Reintegração e Recondução:</strong> Invalidada a demissão, o servidor estável é reintegrado.</li>
+            </ul>
+
+            <h3>6. Regime de Previdência dos Servidores Públicos (Art. 40 da CF)</h3>
+            <ul>
+                <li><strong>Regime Próprio de Previdência Social (RPPS):</strong> Para servidores de cargos públicos.</li>
+                <li><strong>Formas de Aposentadoria:</strong> Incapacidade Permanente, Compulsória (70 ou 75 anos), Voluntária (62/65 anos, 25 anos contribuição).</li>
+                <li><strong>Aposentadorias Especiais:</strong> Para servidores com deficiência, agentes penais/policiais, professores.</li>
+                <li><strong>Vedação de Múltiplas Aposentadorias:</strong> Vedada a percepção de mais de uma aposentadoria à conta de RPPS, exceto as acumuláveis.</li>
+                <li><strong>Pensão por Morte:</strong> Cálculo diferenciado para família de agente policial falecido em serviço.</li>
+                <li><strong>Vedação de Criação de Novos RPPS:</strong> Após 2019.</li>
+            </ul>
+        </div>
+
+        <div id="nacionalidade" class="tab-content">
+            <h2>MÓDULO 5: NACIONALIDADE (ART. 12º E 13 DA CF)</h2>
+            <p>Este módulo explora o vínculo jurídico-político entre o indivíduo e o Estado brasileiro.</p>
+
+            <h3>1. Conceito de Nacionalidade</h3>
+            <ul>
+                <li>Vínculo jurídico-político que liga o indivíduo ao Estado.</li>
+                <li>Não se confunde com naturalidade (local de nascimento).</li>
+                <li>Possível ter mais de uma nacionalidade (dupla cidadania).</li>
+            </ul>
+
+            <h3>2. Formas de Aquisição da Nacionalidade Brasileira</h3>
+            <ul>
+                <li><strong>Nacionalidade Primária (Originária - Brasileiro Nato):</strong> Resulta de fato natural (nascimento).
+                    <ul>
+                        <li><strong>Critério do Solo (Jus Soli):</strong> Nascidos no Brasil, mesmo de pais estrangeiros (desde que não a serviço de seu país).</li>
+                        <li><strong>Critério do Sangue (Jus Sanguinis):</strong> Nascidos no estrangeiro de pai/mãe brasileiro(a) a serviço do Brasil, OU registrados em repartição brasileira, OU que venham a residir no Brasil e optem pela nacionalidade após a maioridade.</li>
+                        <li><strong>Filhos Adotados:</strong> Gozam de nacionalidade nata (efeito ex tunc).</li>
+                    </ul>
+                </li>
+                <li><strong>Nacionalidade Secundária (Derivada - Brasileiro Naturalizado):</strong> Adquirida voluntariamente.
+                    <ul>
+                        <li><strong>Naturalização Ordinária:</strong> Para estrangeiros que cumpram requisitos (ex: 1 ano de residência e idoneidade moral para lusófonos). Ato discricionário.</li>
+                        <li><strong>Naturalização Extraordinária:</strong> Para estrangeiros residentes há mais de 15 anos ininterruptos e sem condenação penal. Ato vinculado (direito subjetivo).</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>3. Quase Nacionalidade</h3>
+            <ul>
+                <li>Benefício a portugueses com residência permanente no Brasil (reciprocidade). Equiparados a brasileiros naturalizados, exceto para cargos privativos de natos.</li>
+            </ul>
+
+            <h3>4. Tratamento Diferenciado entre Brasileiros Natos e Naturalizados (Art. 12, §2º e §3º da CF e Art. 5º, LI da CF)</h3>
+            <ul>
+                <li>A lei não pode distinguir, salvo nos casos expressamente previstos na Constituição.</li>
+                <li><strong>Extradição (Art. 5º, LI da CF):</strong>
+                    <ul>
+                        <li><strong>Brasileiro Nato:</strong> Nunca será extraditado.</li>
+                        <li><strong>Brasileiro Naturalizado:</strong> Pode ser extraditado por crime comum antes da naturalização ou tráfico ilícito de drogas (independentemente do momento).</li>
+                    </ul>
+                </li>
+                <li><strong>Cargos Privativos de Brasileiros Natos (Art. 12, §3º da CF):</strong> MP3.COM (Ministro do STF, Presidente/Vice da República, Presidente da Câmara/Senado, Carreira Diplomática, Oficial das Forças Armadas, Ministro de Estado da Defesa).</li>
+            </ul>
+
+            <h3>5. Perda da Nacionalidade (Art. 12, §4º da CF)</h3>
+            <ul>
+                <li>Hipóteses taxativas:
+                    <ol>
+                        <li><strong>Cancelamento da Naturalização por Sentença Judicial:</strong> Por atividade nociva ao interesse nacional (perda-punição). Apenas para naturalizado.</li>
+                        <li><strong>Aquisição de Outra Nacionalidade (Naturalização Voluntária):</strong> Salvo reconhecimento de nacionalidade originária pela lei estrangeira ou imposição de naturalização como condição de permanência/exercício de direitos civis.</li>
+                    </ol>
+                </li>
+            </ul>
+
+            <h3>6. Reaquisição da Nacionalidade</h3>
+            <ul>
+                <li>Pode ser readquirida por decreto.</li>
+                <li>Divergência sobre efeitos (ex nunc ou ex tunc) para brasileiro nato. STF já afirmou que, para extradição, atribui condição de nato.</li>
+            </ul>
+        </div>
+
+        <div id="sociais" class="tab-content">
+            <h2>MÓDULO 6: DIREITOS SOCIAIS (ART. 6º AO 11 DA CF)</h2>
+            <p>Este módulo aborda os direitos de segunda geração, que exigem uma atuação ativa do Estado para sua concretização.</p>
+
+            <h3>1. Conceito e Características</h3>
+            <ul>
+                <li>Direitos de segunda dimensão ou geração.</li>
+                <li>Exigem comportamento ativo do Estado (prestações estatais).</li>
+                <li>Buscam qualidade de vida e dignidade.</li>
+            </ul>
+
+            <h3>2. Mínimo Existencial vs. Reserva do Possível</h3>
+            <ul>
+                <li>Direitos sociais requerem prestações mínimas.</li>
+                <li><strong>Reserva do Possível:</strong> Estado deve efetivar "na medida do financeiramente possível", mas não pode ser justificativa genérica para omissão.</li>
+                <li><strong>Mínimo Existencial:</strong> Limite à reserva do possível para direitos ligados à dignidade humana.</li>
+            </ul>
+
+            <h3>3. Rol de Direitos Sociais (Art. 6º da CF)</h3>
+            <ul>
+                <li>Rol aberto/exemplificativo.</li>
+                <li>Expressamente previstos: educação, saúde, alimentação, trabalho, moradia, transporte, lazer, segurança, previdência social, proteção à maternidade e à infância, e assistência aos desamparados. (Transporte incluído pela EC nº 90/2015).</li>
+            </ul>
+
+            <h3>4. Direitos dos Trabalhadores (Art. 7º da CF)</h3>
+            <ul>
+                <li><strong>Isonomia Trabalhista:</strong> Direitos para trabalhadores urbanos, rurais e avulsos. Domésticos tiveram direitos ampliados.</li>
+                <li><strong>Irredutibilidade Salarial.</strong></li>
+                <li><strong>Remuneração Variável:</strong> Salário nunca inferior ao mínimo.</li>
+                <li><strong>Décimo Terceiro Salário.</strong></li>
+                <li><strong>Remuneração do Trabalho Noturno:</strong> Superior à do diurno.</li>
+                <li><strong>Proibição de Diferença Salarial/Função/Admissão:</strong> Por motivo de sexo, idade, cor ou estado civil.</li>
+                <li><strong>Seguro-Desemprego:</strong> Apenas em caso de desemprego involuntário.</li>
+                <li><strong>Assistência a Filhos e Dependentes:</strong> Gratuita em creches e pré-escolas até 5 anos.</li>
+                <li><strong>Proibição de Trabalho para Menores de 18 Anos:</strong> Noturno, perigoso ou insalubre.</li>
+            </ul>
+
+            <h3>5. Direito de Greve (Art. 9º da CF)</h3>
+            <ul>
+                <li>Assegurado, com lei definindo serviços essenciais e necessidades inadiáveis.</li>
+                <li>Abusos sujeitam responsáveis às penas da lei.</li>
+            </ul>
+
+            <h3>6. Organização Sindical (Art. 8º da CF)</h3>
+            <ul>
+                <li>Livre a associação profissional ou sindical.</li>
+                <li>Vedada interferência estatal.</li>
+                <li><strong>Unicidade Sindical:</strong> Um sindicato por categoria na mesma base territorial.</li>
+                <li>Liberdade de Filiação.</li>
+                <li>Participação obrigatória dos sindicatos em negociações coletivas.</li>
+                <li>Participação em Colegiados Públicos (Art. 10 da CF).</li>
+            </ul>
+        </div>
+
+        <div id="politicos" class="tab-content">
+            <h2>MÓDULO 7: DIREITOS POLÍTICOS (ART. 14º AO 16º DA CF)</h2>
+            <p>Este módulo aborda as normas constitucionais que regem a participação do cidadão na vida política do Estado.</p>
+
+            <h3>1. Soberania Popular (Art. 14, caput e parágrafo único da CF)</h3>
+            <ul>
+                <li>Exercida pelo sufrágio universal e voto direto e secreto.</li>
+                <li>Brasil adota <strong>democracia semidireta</strong> (representantes eleitos ou diretamente).</li>
+                <li>Formas de participação direta: plebiscito, referendo, iniciativa popular de lei.</li>
+            </ul>
+
+            <h3>2. Alistamento Eleitoral e Voto (Art. 14, §1º e §2º da CF)</h3>
+            <ul>
+                <li><strong>Obrigatório:</strong> Maiores de dezoito anos.</li>
+                <li><strong>Facultativo:</strong> Analfabetos, maiores de setenta anos, maiores de dezesseis e menores de dezoito anos.</li>
+                <li><strong>Inalistáveis:</strong> Estrangeiros e conscritos (durante o serviço militar obrigatório).</li>
+            </ul>
+
+            <h3>3. Condições de Elegibilidade</h3>
+            <ul>
+                <li>Nacionalidade brasileira.</li>
+                <li>Pleno exercício dos direitos políticos.</li>
+                <li>Alistamento eleitoral.</li>
+                <li>Domicílio eleitoral na circunscrição.</li>
+                <li>Filiação partidária.</li>
+                <li>Idade mínima (35 anos para Presidente/Senador, 30 para Governador, 21 para Deputado/Prefeito, 18 para Vereador).</li>
+            </ul>
+
+            <h3>4. Inelegibilidades (Art. 14, §4º a §9º da CF)</h3>
+            <ul>
+                <li>Impedimento ao exercício da cidadania passiva.</li>
+                <li><strong>Militar (Art. 14, §8º):</strong> Afastamento da atividade (menos de 10 anos de serviço) ou agregação (mais de 10 anos).</li>
+                <li><strong>Reeleição:</strong> Permitida para um único período subsequente.</li>
+                <li><strong>Desincompatibilização (Art. 14, §6º):</strong> Presidente, Governadores, Prefeitos devem renunciar ao mandato até 6 meses antes do pleito para concorrer a outros cargos.</li>
+                <li><strong>Inelegibilidade Reflexa (Art. 14, §7º):</strong> Cônjuge e parentes (até 2º grau) do titular são inelegíveis no território de jurisdição.</li>
+            </ul>
+
+            <h3>5. Perda ou Suspensão dos Direitos Políticos (Art. 15 da CF)</h3>
+            <ul>
+                <li><strong>VEDADA A CASSAÇÃO DE DIREITOS POLÍTICOS.</strong></li>
+                <li><strong>Perda (Privação Definitiva):</strong> Cancelamento da naturalização por sentença transitada em julgado; Recusa de cumprir obrigação imposta a todos.</li>
+                <li><strong>Suspensão:</strong> Incapacidade civil absoluta; Condenação criminal transitada em julgado (enquanto durarem os efeitos); Improbidade administrativa.</li>
+                <li>Restabelecimento automático após superação do fato.</li>
+            </ul>
+        </div>
+
+        <div id="partidos" class="tab-content">
+            <h2>MÓDULO 8: PARTIDOS POLÍTICOS (ART. 17º DA CF)</h2>
+            <p>Este módulo aborda as disposições constitucionais relativas aos partidos políticos.</p>
+
+            <h3>1. Princípios e Requisitos</h3>
+            <ul>
+                <li>Caráter nacional.</li>
+                <li>Proibição de recebimento de recursos financeiros de entidade ou governo estrangeiros.</li>
+                <li>Prestação de contas à Justiça Eleitoral.</li>
+                <li>Funcionamento parlamentar de acordo com a lei.</li>
+            </ul>
+
+            <h3>2. Autonomia Partidária (Art. 17, §1º da CF)</h3>
+            <ul>
+                <li>Autonomia para definir estrutura interna, escolha, formação e duração de órgãos, organização e funcionamento.</li>
+                <li>Acesso ao fundo partidário e tempo de rádio/televisão condicionado ao cumprimento de requisitos (Art. 17, §3º da CF).</li>
+            </ul>
+
+            <h3>3. Responsabilidade e Competência Judicial</h3>
+            <ul>
+                <li>Diretórios partidários são individualmente responsáveis.</li>
+                <li><strong>Justiça comum:</strong> Competente para julgar conflitos de interesses envolvendo cidadão e Partido Político (ex: exclusão de filiado).</li>
+                <li><strong>Justiça Eleitoral:</strong> Competente para apreciar controvérsias sobre arrecadação e gastos de recursos, e manutenção de sedes/serviços.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Botão de Voltar ao Topo -->
+    <button id="scrollToTopBtn" title="Voltar ao Topo">⬆️</button>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            setTimeout(() => {
+                document.getElementById(tabName).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Lógica do Tema Claro/Escuro
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        function applyTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙'; // Ícone do sol para modo escuro, lua para modo claro
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light');
+            }
+
+            document.querySelector(".tab-button").click();
+        });
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+
+        // Lógica do Botão de Voltar ao Topo
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "flex";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+</body>
+</html>
